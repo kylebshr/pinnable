@@ -7,25 +7,25 @@
 
 import UIKit
 
-extension NSLayoutConstraint {
-    @discardableResult public func activate() -> Self {
+public extension NSLayoutConstraint {
+    @discardableResult func activate() -> Self {
         isActive = true
         return self
     }
 
-    @discardableResult public func deactivate() -> Self {
+    @discardableResult func deactivate() -> Self {
         isActive = false
         return self
     }
 
-    @discardableResult public func prioritize(_ priority: UILayoutPriority) -> Self {
+    @discardableResult func prioritize(_ priority: UILayoutPriority) -> Self {
         self.priority = priority
         return self
     }
 
-    func setUp() -> NSLayoutConstraint {
-        (self.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
-        self.activate()
+    internal func setUp() -> NSLayoutConstraint {
+        (firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        activate()
         return self
     }
 }
