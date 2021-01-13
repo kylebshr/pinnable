@@ -13,7 +13,7 @@ extension NSLayoutAnchor {
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(equalTo: anchor, constant: constant).prioritize(priority).setUp()
+        constraint(equalTo: anchor, constant: constant).prioritize(priority).setUp()
     }
 
     @objc @discardableResult public func pin(
@@ -21,7 +21,7 @@ extension NSLayoutAnchor {
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(greaterThanOrEqualTo: anchor, constant: constant).prioritize(priority).setUp()
+        constraint(greaterThanOrEqualTo: anchor, constant: constant).prioritize(priority).setUp()
     }
 
     @objc @discardableResult public func pin(
@@ -29,6 +29,6 @@ extension NSLayoutAnchor {
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(lessThanOrEqualTo: anchor, constant: constant).prioritize(priority).setUp()
+        constraint(lessThanOrEqualTo: anchor, constant: constant).prioritize(priority).setUp()
     }
 }

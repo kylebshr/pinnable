@@ -9,12 +9,12 @@ import UIKit
 
 extension NSLayoutConstraint {
     @discardableResult public func activate() -> Self {
-        self.isActive = true
+        isActive = true
         return self
     }
 
     @discardableResult public func deactivate() -> Self {
-        self.isActive = false
+        isActive = false
         return self
     }
 

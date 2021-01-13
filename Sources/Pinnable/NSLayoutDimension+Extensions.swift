@@ -12,7 +12,7 @@ extension NSLayoutDimension {
         to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(equalToConstant: constant)
+        constraint(equalToConstant: constant)
             .prioritize(priority)
             .setUp()
     }
@@ -21,7 +21,7 @@ extension NSLayoutDimension {
         greaterThan constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(greaterThanOrEqualToConstant: constant)
+        constraint(greaterThanOrEqualToConstant: constant)
             .prioritize(priority)
             .setUp()
     }
@@ -30,7 +30,7 @@ extension NSLayoutDimension {
         lessThan constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(lessThanOrEqualToConstant: constant)
+        constraint(lessThanOrEqualToConstant: constant)
             .prioritize(priority)
             .setUp()
     }
@@ -41,7 +41,7 @@ extension NSLayoutDimension {
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(equalTo: anchor, multiplier: multiplier, constant: constant).prioritize(priority).setUp()
+        constraint(equalTo: anchor, multiplier: multiplier, constant: constant).prioritize(priority).setUp()
     }
 
     @objc @discardableResult public func pin(
@@ -50,7 +50,7 @@ extension NSLayoutDimension {
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(greaterThanOrEqualTo: anchor, multiplier: multiplier, constant: constant)
+        constraint(greaterThanOrEqualTo: anchor, multiplier: multiplier, constant: constant)
             .prioritize(priority)
             .setUp()
     }
@@ -60,7 +60,7 @@ extension NSLayoutDimension {
         multiplier: CGFloat = 1, constant: CGFloat = 0,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
-        self.constraint(lessThanOrEqualTo: anchor, multiplier: multiplier, constant: constant)
+        constraint(lessThanOrEqualTo: anchor, multiplier: multiplier, constant: constant)
             .prioritize(priority)
             .setUp()
     }

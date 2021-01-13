@@ -35,7 +35,7 @@ extension Pinnable {
         let bottom = edges.contains(.bottom) ? bottomAnchor.pin(to: object.bottomAnchor, constant: -insets.bottom) : nil
         let right = edges.contains(.right) ? trailingAnchor.pin(to: object.trailingAnchor, constant: -insets.right) : nil
 
-        (self as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
 
         let constraints = [left, right, top, bottom].compactMap { $0 }
         NSLayoutConstraint.activate(constraints)
@@ -50,7 +50,7 @@ extension Pinnable {
         let centerX = centerXAnchor.pin(to: object.centerXAnchor, constant: offset.horizontal)
         let centerY = centerYAnchor.pin(to: object.centerYAnchor, constant: offset.vertical)
 
-        (self as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
         NSLayoutConstraint.activate([centerX, centerY])
 
         return (x: centerX, y: centerY)
@@ -63,7 +63,7 @@ extension Pinnable {
         let height = heightAnchor.pin(to: object.heightAnchor)
         let width = widthAnchor.pin(to: object.widthAnchor)
 
-        (self as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
         NSLayoutConstraint.activate([height, width])
 
         return (width: width, height: height)
@@ -76,7 +76,7 @@ extension Pinnable {
         let height = heightAnchor.pin(to: size.height)
         let width = widthAnchor.pin(to: size.width)
 
-        (self as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
         NSLayoutConstraint.activate([height, width])
 
         return (width: width, height: height)
@@ -86,5 +86,13 @@ extension Pinnable {
         to constant: CGFloat
     ) -> (width: NSLayoutConstraint, height: NSLayoutConstraint) {
         pinSize(to: CGSize(width: constant, height: constant))
+    }
+
+    func disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded() {
+        if let self = self as? UIView {
+            if self.translatesAutoresizingMaskIntoConstraints {
+                self.translatesAutoresizingMaskIntoConstraints = false
+            }
+        }
     }
 }
