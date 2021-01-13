@@ -27,7 +27,7 @@ extension Pinnable {
     /// Constrain the edges of the receiver to the corresponding edges of the provided view or layout guide.
     /// 
     /// - Parameters:
-    ///   - edges: The edges to constrain. Defaults to `.all`.
+    ///   - edges: The edges to constrain. The `left` and `right` edge will constrain the `leading` and `trailing` anchors, respectively. Defaults to `.all`.
     ///   - object: The object to constrain the receiver to.
     ///   - insets: Optional insets to apply to the constraints. The top, left, bottom, and right constants will be applied to the top, leading, bottom, and trailing edges, respectively. Defaults to `.zero`.
     /// - Returns: A named tuple of the created constraints. The properties are optional, as edges not specified will not have constraints.

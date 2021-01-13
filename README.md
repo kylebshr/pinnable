@@ -32,8 +32,8 @@ firstView.pinEdges(to: secondView)
 // With insets
 firstView.pinEdges(to: secondView, insets: .init(top: 10, left: 20, bottom: 30, right: 20))
 
-// ...and without the bottom
-firstView.pinEdges([.top, .left, .right], to: secondView, insets: .init(top: 10, left: 20, bottom: 0, right: 20))
+// ...or excluding the bottom edge
+firstView.pinEdges([.top, .left, .right], to: secondView)
 ```
 
 The methods available on `UIView` (and `UILayoutGuide`) are meant for creating constraints for multiple anchors (e.g., `pinEdges` can pin multiple edges, `pinSize` constrains both the width and height dimensions).
