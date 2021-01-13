@@ -9,10 +9,10 @@ import UIKit
 
 extension UILayoutGuide: Pinnable {
     public var firstBaselineAnchor: NSLayoutYAxisAnchor {
-        return bottomAnchor
+        bottomAnchor
     }
 
     public var lastBaselineAnchor: NSLayoutYAxisAnchor {
-        return bottomAnchor
+        bottomAnchor
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol Pinnable: class {
+public protocol Pinnable: AnyObject {
     var topAnchor: NSLayoutYAxisAnchor { get }
     var leadingAnchor: NSLayoutXAxisAnchor { get }
     var trailingAnchor: NSLayoutXAxisAnchor { get }
@@ -23,8 +23,8 @@ public protocol Pinnable: class {
     var heightAnchor: NSLayoutDimension { get }
 }
 
-public extension Pinnable {
-    @discardableResult func pinEdges(
+extension Pinnable {
+    @discardableResult public func pinEdges(
         _ edges: UIRectEdge = .all,
         to object: Pinnable,
         insets: UIEdgeInsets = .zero
@@ -34,57 +34,57 @@ public extension Pinnable {
         let bottom = edges.contains(.bottom) ? bottomAnchor.pin(to: object.bottomAnchor, constant: -insets.bottom) : nil
         let right = edges.contains(.right) ? trailingAnchor.pin(to: object.trailingAnchor, constant: -insets.right) : nil
 
-        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
+        disableTranslatesAutoresizingMaskIntoConstraintsIfNeeded()
 
         let constraints = [left, right, top, bottom].compactMap { $0 }
         NSLayoutConstraint.activate(constraints)
         return constraints
     }
 
-    @discardableResult func pinCenter(
+    @discardableResult public func pinCenter(
         to object: Pinnable,
         offset: UIOffset = .zero
     ) -> (x: NSLayoutConstraint, y: NSLayoutConstraint) {
         let centerX = centerXAnchor.pin(to: object.centerXAnchor, constant: offset.horizontal)
         let centerY = centerYAnchor.pin(to: object.centerYAnchor, constant: offset.vertical)
 
-        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
+        disableTranslatesAutoresizingMaskIntoConstraintsIfNeeded()
         NSLayoutConstraint.activate([centerX, centerY])
 
         return (x: centerX, y: centerY)
     }
 
-    @discardableResult func pinSize(
+    @discardableResult public func pinSize(
         to object: Pinnable
     ) -> (width: NSLayoutConstraint, height: NSLayoutConstraint) {
         let height = heightAnchor.pin(to: object.heightAnchor)
         let width = widthAnchor.pin(to: object.widthAnchor)
 
-        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
+        disableTranslatesAutoresizingMaskIntoConstraintsIfNeeded()
         NSLayoutConstraint.activate([height, width])
 
         return (width: width, height: height)
     }
 
-    @discardableResult func pinSize(
+    @discardableResult public func pinSize(
         to size: CGSize
     ) -> (width: NSLayoutConstraint, height: NSLayoutConstraint) {
         let height = heightAnchor.pin(to: size.height)
         let width = widthAnchor.pin(to: size.width)
 
-        disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded()
+        disableTranslatesAutoresizingMaskIntoConstraintsIfNeeded()
         NSLayoutConstraint.activate([height, width])
 
         return (width: width, height: height)
     }
 
-    @discardableResult func pinSize(
+    @discardableResult public func pinSize(
         to constant: CGFloat
     ) -> (width: NSLayoutConstraint, height: NSLayoutConstraint) {
         pinSize(to: CGSize(width: constant, height: constant))
     }
 
-    internal func disableTranslatesAutoResizingMaskIntoConstraintsIfNeeded() {
+    internal func disableTranslatesAutoresizingMaskIntoConstraintsIfNeeded() {
         if let self = self as? UIView {
             if self.translatesAutoresizingMaskIntoConstraints {
                 self.translatesAutoresizingMaskIntoConstraints = false

@@ -7,8 +7,8 @@
 
 import UIKit
 
-public extension NSLayoutAnchor {
-    @objc @discardableResult func pin(
+extension NSLayoutAnchor {
+    @objc @discardableResult public func pin(
         to anchor: NSLayoutAnchor<AnchorType>,
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -16,7 +16,7 @@ public extension NSLayoutAnchor {
         constraint(equalTo: anchor, constant: constant).prioritize(priority).setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         greaterThan anchor: NSLayoutAnchor<AnchorType>,
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required
@@ -24,7 +24,7 @@ public extension NSLayoutAnchor {
         constraint(greaterThanOrEqualTo: anchor, constant: constant).prioritize(priority).setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         lessThan anchor: NSLayoutAnchor<AnchorType>,
         constant: CGFloat = 0,
         priority: UILayoutPriority = .required

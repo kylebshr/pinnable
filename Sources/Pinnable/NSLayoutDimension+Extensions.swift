@@ -7,8 +7,8 @@
 
 import UIKit
 
-public extension NSLayoutDimension {
-    @objc @discardableResult func pin(
+extension NSLayoutDimension {
+    @objc @discardableResult public func pin(
         to constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
@@ -17,7 +17,7 @@ public extension NSLayoutDimension {
             .setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         greaterThan constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
@@ -26,7 +26,7 @@ public extension NSLayoutDimension {
             .setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         lessThan constant: CGFloat,
         priority: UILayoutPriority = .required
     ) -> NSLayoutConstraint {
@@ -35,7 +35,7 @@ public extension NSLayoutDimension {
             .setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         to anchor: NSLayoutDimension,
         multiplier: CGFloat = 1,
         constant: CGFloat = 0,
@@ -44,7 +44,7 @@ public extension NSLayoutDimension {
         constraint(equalTo: anchor, multiplier: multiplier, constant: constant).prioritize(priority).setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         greaterThan anchor: NSLayoutDimension,
         multiplier: CGFloat = 1,
         constant: CGFloat = 0,
@@ -55,7 +55,7 @@ public extension NSLayoutDimension {
             .setUp()
     }
 
-    @objc @discardableResult func pin(
+    @objc @discardableResult public func pin(
         lessThan anchor: NSLayoutDimension,
         multiplier: CGFloat = 1, constant: CGFloat = 0,
         priority: UILayoutPriority = .required

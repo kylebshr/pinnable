@@ -7,18 +7,18 @@
 
 import UIKit
 
-public extension NSLayoutConstraint {
-    @discardableResult func activate() -> Self {
+extension NSLayoutConstraint {
+    @discardableResult public func activate() -> Self {
         isActive = true
         return self
     }
 
-    @discardableResult func deactivate() -> Self {
+    @discardableResult public func deactivate() -> Self {
         isActive = false
         return self
     }
 
-    @discardableResult func prioritize(_ priority: UILayoutPriority) -> Self {
+    @discardableResult public func prioritize(_ priority: UILayoutPriority) -> Self {
         self.priority = priority
         return self
     }
