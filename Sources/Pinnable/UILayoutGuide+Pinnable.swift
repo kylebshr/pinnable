@@ -8,11 +8,13 @@
 import UIKit
 
 extension UILayoutGuide: Pinnable {
-    var firstBaselineAnchor: NSLayoutYAxisAnchor {
+    /// Equivalent to `bottomAnchor`.
+    public var firstBaselineAnchor: NSLayoutYAxisAnchor {
         bottomAnchor
     }
 
-    var lastBaselineAnchor: NSLayoutYAxisAnchor {
+    /// Equivalent to `bottomAnchor`.
+    public var lastBaselineAnchor: NSLayoutYAxisAnchor {
         bottomAnchor
     }
 }
