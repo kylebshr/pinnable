@@ -25,7 +25,7 @@ extension NSLayoutConstraint {
     }
 
     /// Set the priority on the constraint.
-    /// 
+    ///
     /// - Parameter priority: The value of the priority.
     /// - Returns: self
     @discardableResult public func prioritize(_ priority: UILayoutPriority) -> Self {
@@ -33,9 +33,21 @@ extension NSLayoutConstraint {
         return self
     }
 
-    internal func setUp() -> NSLayoutConstraint {
+    internal func setUp() -> Self {
         (firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         activate()
         return self
+    }
+
+    internal func copyWith(multiplier: CGFloat) -> Self {
+        .init(
+            item: firstItem as Any,
+            attribute: firstAttribute,
+            relatedBy: relation,
+            toItem: secondItem,
+            attribute: secondAttribute,
+            multiplier: multiplier,
+            constant: constant
+        ).prioritize(priority)
     }
 }

@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Pinnable",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v9),
     ],
     products: [
         .library(name: "Pinnable", targets: ["Pinnable"]),
