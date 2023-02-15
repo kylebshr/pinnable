@@ -17,4 +17,8 @@ extension UILayoutGuide: Pinnable {
     public var lastBaselineAnchor: NSLayoutYAxisAnchor {
         bottomAnchor
     }
+
+    public var superview: UIView? {
+        owningView?.superview
+    }
 }

@@ -22,11 +22,15 @@ public protocol Pinnable: AnyObject {
 
     var widthAnchor: NSLayoutDimension { get }
     var heightAnchor: NSLayoutDimension { get }
+
+    var superview: UIView? { get }
 }
 
 extension Pinnable {
     /// Constrain the edges of the receiver to the corresponding edges of the provided view or layout guide.
-    /// 
+    ///
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
+    ///
     /// - Parameters:
     ///   - edges: The edges to constrain. The `left` and `right` edge will constrain the `leading` and `trailing` anchors, respectively. Defaults to `.all`.
     ///   - object: The object to constrain the receiver to.
@@ -48,7 +52,47 @@ extension Pinnable {
         return (top: top, leading: leading, bottom: bottom, trailing: trailing)
     }
 
+    /// Constrain the edges of the receiver to the corresponding edges of its superview. It is a programmer error to call this method on an object that does not have a superview.
+    ///
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain. The `left` and `right` edge will constrain the `leading` and `trailing` anchors, respectively. Defaults to `.all`.
+    ///   - insets: Optional insets to apply to the constraints. The top, left, bottom, and right constants will be applied to the top, leading, bottom, and trailing edges, respectively. Defaults to `.zero`.
+    /// - Returns: A named tuple of the created constraints. The properties are optional, as edges not specified will not have constraints.
+    @discardableResult public func pinEdgesToSuperview(
+        _ edges: UIRectEdge = .all,
+        insets: UIEdgeInsets = .zero
+    ) -> (top: NSLayoutConstraint?, leading: NSLayoutConstraint?, bottom: NSLayoutConstraint?, trailing: NSLayoutConstraint?) {
+        guard let superview = superview else {
+            fatalError("Receiver must have a superview to use this method.")
+        }
+
+        return pinEdges(edges, to: superview, insets: insets)
+    }
+
+    /// Constrain the edges of the receiver to the corresponding edges of its superview’s layout margins. It is a programmer error to call this method on an object that does not have a superview.
+    ///
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to constrain. The `left` and `right` edge will constrain the `leading` and `trailing` anchors, respectively. Defaults to `.all`.
+    ///   - insets: Optional insets to apply to the constraints. The top, left, bottom, and right constants will be applied to the top, leading, bottom, and trailing edges, respectively. Defaults to `.zero`.
+    /// - Returns: A named tuple of the created constraints. The properties are optional, as edges not specified will not have constraints.
+    @discardableResult public func pinEdgesToSuperviewMargins(
+        _ edges: UIRectEdge = .all,
+        insets: UIEdgeInsets = .zero
+    ) -> (top: NSLayoutConstraint?, leading: NSLayoutConstraint?, bottom: NSLayoutConstraint?, trailing: NSLayoutConstraint?) {
+        guard let superview = superview else {
+            fatalError("Receiver must have a superview to use this method.")
+        }
+
+        return pinEdges(edges, to: superview.layoutMarginsGuide, insets: insets)
+    }
+
     /// Constrain the center of the receiver to the center of the provided view or layout guide.
+    ///
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
     ///
     /// - Parameters:
     ///   - object: The object to constrain the receiver to.
@@ -69,7 +113,9 @@ extension Pinnable {
 
     /// Constrain the size of the receiver to the size of the provided view or layout guide.
     ///
-    /// Note: to constrain a view or layout guide in a single dimension, pin the desired layout anchors directly, e.g.:
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
+    ///
+    /// To constrain a view or layout guide in a single dimension, pin the desired layout anchors directly instead, e.g.:
     ///
     ///     a.widthAnchor.pin(to: b.widthAnchor)
     ///
@@ -90,7 +136,9 @@ extension Pinnable {
 
     /// Constrain the size of the receiver to the provided constant size.
     ///
-    /// Note: to constrain a view or layout guide in a single dimension, pin the desired layout anchor directly, e.g.:
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
+    ///
+    /// To constrain a view or layout guide in a single dimension, pin the desired layout anchor directly instead, e.g.:
     ///
     ///     a.widthAnchor.pin(to: 100)
     ///
@@ -111,7 +159,9 @@ extension Pinnable {
 
     /// Constrain the width and height of the receiver to the provided constant.
     ///
-    /// Note: to constrain a view or layout guide in a single dimension, pin the desired layout anchor directly, e.g.:
+    /// If the receiver is a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints`.
+    ///
+    /// To constrain a view or layout guide in a single dimension, pin the desired layout anchor directly instead, e.g.:
     ///
     ///     a.widthAnchor.pin(to: 100)
     ///

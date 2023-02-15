@@ -8,7 +8,10 @@
 import UIKit
 
 extension NSLayoutDimension {
-    /// Constrain the receiver to a constant size.  The constraint is automatically activated.
+    /// Constrain the receiver to a constant size. The constraint is automatically activated.
+    ///
+    /// If the receiver is an anchor on a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints` on that view.
+    ///
     /// - Parameters:
     ///   - constant: The size to constrain the receiver to.
     ///   - priority: The priority of the constraint.
@@ -22,7 +25,10 @@ extension NSLayoutDimension {
             .setUp()
     }
 
-    /// Constrain the receiver greater-than-or-equal to a constant size.  The constraint is automatically activated.
+    /// Constrain the receiver greater-than-or-equal to a constant size. The constraint is automatically activated.
+    ///
+    /// If the receiver is an anchor on a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints` on that view.
+    ///
     /// - Parameters:
     ///   - constant: The size to constrain the receiver to.
     ///   - priority: The priority of the constraint.
@@ -36,7 +42,10 @@ extension NSLayoutDimension {
             .setUp()
     }
 
-    /// Constrain the receiver less-than-or-equal to a constant size.  The constraint is automatically activated.
+    /// Constrain the receiver less-than-or-equal to a constant size. The constraint is automatically activated.
+    ///
+    /// If the receiver is an anchor on a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints` on that view.
+    ///
     /// - Parameters:
     ///   - constant: The size to constrain the receiver to.
     ///   - priority: The priority of the constraint.

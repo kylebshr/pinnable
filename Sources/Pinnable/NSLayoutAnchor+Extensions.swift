@@ -8,7 +8,7 @@
 import UIKit
 
 extension NSLayoutAnchor {
-    /// Create an equal-to constraint between the receiver and the provided layout anchor.  The constraint is automatically activated.
+    /// Create an equal-to constraint between the receiver and the provided layout anchor. The constraint is automatically activated.
     ///
     /// If the receiver is an anchor on a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints` on that view.
     ///
@@ -27,7 +27,7 @@ extension NSLayoutAnchor {
             .setUp()
     }
 
-    /// Create a greater-than-or-equal-to constraint between the receiver and the provided layout anchor.  The constraint is automatically activated.
+    /// Create a greater-than-or-equal-to constraint between the receiver and the provided layout anchor. The constraint is automatically activated.
     ///
     /// If the receiver is an anchor on a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints` on that view.
     ///
@@ -46,7 +46,7 @@ extension NSLayoutAnchor {
             .setUp()
     }
 
-    /// Create a less-than-or-equal-to constraint between the receiver and the provided layout anchor.  The constraint is automatically activated.
+    /// Create a less-than-or-equal-to constraint between the receiver and the provided layout anchor. The constraint is automatically activated.
     ///
     /// If the receiver is an anchor on a `UIView`, this method disables `translatesAutoresizingMaskIntoConstraints` on that view.
     ///
