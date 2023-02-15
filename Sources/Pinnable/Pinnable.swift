@@ -64,7 +64,7 @@ extension Pinnable {
         _ edges: UIRectEdge = .all,
         insets: UIEdgeInsets = .zero
     ) -> (top: NSLayoutConstraint?, leading: NSLayoutConstraint?, bottom: NSLayoutConstraint?, trailing: NSLayoutConstraint?) {
-        guard let superview = superview else {
+        guard let superview else {
             fatalError("Receiver must have a superview to use this method.")
         }
 
@@ -83,7 +83,7 @@ extension Pinnable {
         _ edges: UIRectEdge = .all,
         insets: UIEdgeInsets = .zero
     ) -> (top: NSLayoutConstraint?, leading: NSLayoutConstraint?, bottom: NSLayoutConstraint?, trailing: NSLayoutConstraint?) {
-        guard let superview = superview else {
+        guard let superview else {
             fatalError("Receiver must have a superview to use this method.")
         }
 
