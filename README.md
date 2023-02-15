@@ -1,8 +1,6 @@
-# Pinnable
-
 ![Pinnable Header Image](Header.png)
 
-Convenient Auto Layout
+Pinnable is a small Auto Layout framework.
 
 ### Introduction
 
